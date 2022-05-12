@@ -1,0 +1,57 @@
+.form {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: 10px 100px 0 0;
+  width: 30%;
+}
+
+label {
+  margin: 5px 0;
+}
+
+.textArea, .name, .raridade {
+  display: flex;
+  flex-direction: column;
+}
+
+.textArea textarea, .name input {
+  width: 250px;
+}
+
+.name input, .atributo input, .imagem input {
+  height: 20px;
+}
+
+.atributo input, .imagem input {
+  margin-left: 5px;
+}
+
+.textArea textarea {
+  height: 50px;
+}
+
+.atributo input {
+  width: 165px;
+}
+
+.imagem input {
+  width: 181px;
+}
+
+.raridade select {
+  height: 30px;
+  width: 258px;
+}
+
+.super {
+  margin: 8px 145px 8px 0;
+}
+
+button {
+  background-color: #003be5;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 5px 25px;
+}

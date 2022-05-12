@@ -1,0 +1,15 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.container-formPreview {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+header {
+  margin: 15px 0 40px;
+  text-align: center;
+}
