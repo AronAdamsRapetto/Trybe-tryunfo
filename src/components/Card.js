@@ -20,20 +20,20 @@ class Card extends React.Component {
         <img src={ cardImage } alt={ cardName } data-testid="image-card" />
         <p className="description" data-testid="description-card">{ cardDescription }</p>
         <div className="atributos">
-          <spam data-testid="attr1-card">
+          <p data-testid="attr1-card">
             Atributo 1.................................................
             { cardAttr1 }
-          </spam>
-          <spam data-testid="attr2-card">
+          </p>
+          <p data-testid="attr2-card">
             Atributo 2.................................................
             { cardAttr2 }
-          </spam>
-          <spam data-testid="attr3-card">
+          </p>
+          <p data-testid="attr3-card">
             Atributo 3.................................................
             { cardAttr3 }
-          </spam>
+          </p>
         </div>
-        <p className="raridade" data-testid="rare-card">{ cardRare }</p>
+        <p className="raridadeCard" data-testid="rare-card">{ cardRare }</p>
         {
           cardTrunfo && <p className="tryunfo" data-testid="trunfo-card">Super Trunfo</p>
         }

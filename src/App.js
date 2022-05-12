@@ -6,27 +6,72 @@ import './App.css';
 class App extends React.Component {
   state = {
     cardName: '',
-    cardDescription: '',
-    cardAttr1: '',
-    cardAttr2: '',
-    cardAttr3: '',
+    cardDescri: '',
+    cardAttr1: '0',
+    cardAttr2: '0',
+    cardAttr3: '0',
     cardImage: '',
     cardRare: '',
     cardTrunfo: false,
     hasTrunfo: false,
-    isSaveButtonDisabled: false,
+    isSaveButtonDisabled: true,
+  }
+
+  // handleMaxAtribute = ({ target }) => {
+  //   const max = 90;
+  //   if (parseInt(target.value, 10) > max) {
+  //     target.value = '90';
+  //   }
+
+  // };
+
+  enableButton = () => {
+    const {
+      cardName,
+      cardDescri,
+      cardImage,
+      cardRare,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+    } = this.state;
+    const attr1 = parseInt(cardAttr1, 10);
+    const attr2 = parseInt(cardAttr2, 10);
+    const attr3 = parseInt(cardAttr3, 10);
+    const maxTotal = 210;
+    const max = 90;
+
+    if (cardName === '' || cardDescri === '' || cardImage === '' || cardRare === '') {
+      this.setState({ isSaveButtonDisabled: true });
+    } else {
+      this.setState({ isSaveButtonDisabled: false });
+    }
+
+    if (attr1 + attr2 + attr3 > maxTotal) {
+      console.log('soma total superior a 210');
+      this.setState({ isSaveButtonDisabled: true });
+    }
+    if (attr1 < 0 || attr2 < 0 || attr3 < 0) {
+      console.log('um valor menor que 0');
+      this.setState({ isSaveButtonDisabled: true });
+    }
+    if (attr1 > max || attr2 > max || attr3 > max) {
+      console.log('algum numero maior que 90');
+      this.setState({ isSaveButtonDisabled: true });
+    }
   }
 
   onInputChange = ({ target }) => {
     const { name } = target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     this.setState({ [name]: value });
+    this.enableButton();
   }
 
   render() {
     const {
       cardName,
-      cardDescription,
+      cardDescri,
       cardAttr1,
       cardAttr2,
       cardAttr3,
@@ -45,7 +90,7 @@ class App extends React.Component {
           <Form
             onInputChange={ this.onInputChange }
             cardName={ cardName }
-            cardDescription={ cardDescription }
+            cardDescription={ cardDescri }
             cardAttr1={ cardAttr1 }
             cardAttr2={ cardAttr2 }
             cardAttr3={ cardAttr3 }
@@ -57,7 +102,7 @@ class App extends React.Component {
           />
           <Card
             cardName={ cardName }
-            cardDescription={ cardDescription }
+            cardDescription={ cardDescri }
             cardAttr1={ cardAttr1 }
             cardAttr2={ cardAttr2 }
             cardAttr3={ cardAttr3 }

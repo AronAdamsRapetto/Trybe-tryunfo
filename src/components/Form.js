@@ -18,6 +18,7 @@ class Form extends React.Component {
       onInputChange,
       onSaveButtonClick,
     } = this.props;
+
     return (
       <form className="form">
         <label className="name" htmlFor="input-nome">
@@ -35,7 +36,7 @@ class Form extends React.Component {
           Descrição:
           <textarea
             id="input-description"
-            name="cardDescription"
+            name="cardDescri"
             data-testid="description-input"
             value={ cardDescription }
             onChange={ onInputChange }
@@ -50,6 +51,8 @@ class Form extends React.Component {
             data-testid="attr1-input"
             value={ cardAttr1 }
             onChange={ onInputChange }
+            // onKeyUp={ this.handleMaxAtribute }
+            max="90"
           />
         </label>
         <label className="atributo" htmlFor="input-attr2">
@@ -61,6 +64,8 @@ class Form extends React.Component {
             data-testid="attr2-input"
             value={ cardAttr2 }
             onChange={ onInputChange }
+            // onKeyUp={ this.handleMaxAtribute }
+            max="90"
           />
         </label>
         <label className="atributo" htmlFor="input-attr3">
@@ -72,6 +77,8 @@ class Form extends React.Component {
             data-testid="attr3-input"
             value={ cardAttr3 }
             onChange={ onInputChange }
+            // onKeyUp={ this.handleMaxAtribute }
+            max="90"
           />
         </label>
         <label className="imagem" htmlFor="input-image">
