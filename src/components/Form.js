@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './Form.css';
+import Checkbox from './Checkbox';
 
 class Form extends React.Component {
   render() {
@@ -51,7 +52,6 @@ class Form extends React.Component {
             data-testid="attr1-input"
             value={ cardAttr1 }
             onChange={ onInputChange }
-            // onKeyUp={ this.handleMaxAtribute }
             max="90"
           />
         </label>
@@ -64,7 +64,6 @@ class Form extends React.Component {
             data-testid="attr2-input"
             value={ cardAttr2 }
             onChange={ onInputChange }
-            // onKeyUp={ this.handleMaxAtribute }
             max="90"
           />
         </label>
@@ -77,7 +76,6 @@ class Form extends React.Component {
             data-testid="attr3-input"
             value={ cardAttr3 }
             onChange={ onInputChange }
-            // onKeyUp={ this.handleMaxAtribute }
             max="90"
           />
         </label>
@@ -106,17 +104,10 @@ class Form extends React.Component {
             <option value="muito raro">muito raro</option>
           </select>
         </label>
-        <label className="super" htmlFor="input-superTrunfo">
-          <input
-            type="checkbox"
-            id="input-superTrunfo"
-            name="cardTrunfo"
-            data-testid="trunfo-input"
-            checked={ cardTrunfo }
-            onChange={ onInputChange }
-          />
-          Super Trunfo
-        </label>
+        {
+          hasTrunfo ? <p>Você já tem um Super Trunfo em seu baralho</p>
+            : <Checkbox cardTrunfo={ cardTrunfo } onInputChange={ onInputChange } />
+        }
         <button
           data-testid="save-button"
           type="button"

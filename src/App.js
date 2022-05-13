@@ -15,15 +15,57 @@ class App extends React.Component {
     cardTrunfo: false,
     hasTrunfo: false,
     isSaveButtonDisabled: true,
+    savedCards: [],
   }
 
-  // handleMaxAtribute = ({ target }) => {
-  //   const max = 90;
-  //   if (parseInt(target.value, 10) > max) {
-  //     target.value = '90';
-  //   }
+  setTrunfo = () => {
+    const { cardTrunfo } = this.state;
+    if (cardTrunfo) {
+      this.setState({ hasTrunfo: true });
+    } else {
+      this.setState({ hasTrunfo: false });
+    }
+  }
 
-  // };
+  // Idéia de utilizar o spread para adicionar array no estado retirada do pullRequest de @AlencarDiasDaCosta
+  handleClick = () => {
+    const {
+      cardName,
+      cardDescri,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo,
+    } = this.state;
+
+    this.setState((estadoAnterior) => ({
+      savedCards: [...estadoAnterior.savedCards, {
+        cardName,
+        cardDescri,
+        cardAttr1,
+        cardAttr2,
+        cardAttr3,
+        cardImage,
+        cardRare,
+        cardTrunfo,
+      }],
+    }), () => {
+      this.setTrunfo();
+      this.setState(() => ({
+        cardName: '',
+        cardDescri: '',
+        cardAttr1: '0',
+        cardAttr2: '0',
+        cardAttr3: '0',
+        cardImage: '',
+        cardRare: 'normal',
+        cardTrunfo: false,
+        isSaveButtonDisabled: true,
+      }));
+    });
+  }
 
   enableButton = () => {
     const {
@@ -61,7 +103,7 @@ class App extends React.Component {
     }
   }
 
-  onInputChange = ({ target }) => {
+  handleChange = ({ target }) => {
     const { name } = target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     this.setState(() => ({
@@ -89,7 +131,8 @@ class App extends React.Component {
         </header>
         <section className="container-formPreview">
           <Form
-            onInputChange={ this.onInputChange }
+            onInputChange={ this.handleChange }
+            onSaveButtonClick={ this.handleClick }
             cardName={ cardName }
             cardDescription={ cardDescri }
             cardAttr1={ cardAttr1 }
