@@ -17,11 +17,9 @@ class App extends React.Component {
     hasTrunfo: false,
     isSaveButtonDisabled: true,
     savedCards: [],
-    filter: {
-      filterName: '',
-      filterRarity: '',
-      filterSuper: false,
-    },
+    filterName: '',
+    filterRarity: 'todas',
+    filterSuper: false,
   }
 
   setTrunfo = () => {
@@ -106,18 +104,20 @@ class App extends React.Component {
     }
   }
 
+  resetFilters = () => {
+    // filterName: '',
+    // filterRarity: 'todas',
+    // filterSuper: false,
+    const { filterSuper } = this.state;
+    if (filterSuper) this.setState({ filterName: '', filterRarity: 'todas' });
+  }
+
   handleChange = ({ target }) => {
     const { name } = target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     this.setState(() => ({
       [name]: value,
     }), this.enableButton);
-  }
-
-  handleChangeFilter = ({ target }) => {
-    const { name } = target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    this.setState({ filter: { [name]: value } });
   }
 
   handleClickDelete = (indexClick) => {
@@ -144,7 +144,9 @@ class App extends React.Component {
       hasTrunfo,
       isSaveButtonDisabled,
       savedCards,
-      filter,
+      filterName,
+      filterRarity,
+      filterSuper,
     } = this.state;
     return (
       <div>
@@ -182,11 +184,30 @@ class App extends React.Component {
         </section>
         <h2 className="titulo-allCards">Totas as cartas</h2>
         <div className="container-allCards">
-          <Filter filter={ filter } onHandleChange={ this.handleChangeFilter } />
+          <Filter
+            filterName={ filterName }
+            filterRarity={ filterRarity }
+            filterSuper={ filterSuper }
+            onHandleChange={ this.handleChange }
+          />
           <section className="card-list">
             {
-              savedCards.filter((cardFilter) => cardFilter.cardName
-                .includes(filter.filterName))
+              savedCards.filter((cardFilter) => {
+                if (filterRarity === 'todas' && filterSuper === false) {
+                  return true;
+                }
+                if (cardFilter.cardRare === filterRarity && filterSuper === false) {
+                  return true;
+                }
+                if (cardFilter.cardTrunfo === true && filterSuper === true) return true;
+                return false;
+              }).filter((cardFilter) => {
+                if (cardFilter.cardName.includes(filterName) && filterSuper === false) {
+                  return true;
+                }
+                if (cardFilter.cardTrunfo === true && filterSuper === true) return true;
+                return false;
+              })
                 .map((card, index) => (
                   <div className="card-item" key={ card.cardName }>
                     <Card

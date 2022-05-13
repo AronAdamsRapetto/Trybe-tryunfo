@@ -26,6 +26,10 @@
   width: 305px;
 }
 
+.filters-container .input-nameFilter:disabled, .filters-container select:disabled {
+  border-color: rgb(177, 177, 177);
+}
+
 .trunfo-filter input {
   margin-right: 5px;
   width: 15px;
