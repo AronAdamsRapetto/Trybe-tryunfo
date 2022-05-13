@@ -59,3 +59,13 @@ body {
   margin: 20px;
   padding: 8px 32px;
 }
+
+.titulo-allCards {
+  margin: 20px;
+  text-align: center;
+}
+
+.container-allCards {
+  display: flex;
+  justify-content: space-evenly;
+}

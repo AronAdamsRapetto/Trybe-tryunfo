@@ -2,6 +2,7 @@ import React from 'react';
 import Card from './components/Card';
 import Form from './components/Form';
 import './App.css';
+import Filter from './components/Filter';
 
 class App extends React.Component {
   state = {
@@ -90,15 +91,12 @@ class App extends React.Component {
     }
 
     if (attr1 + attr2 + attr3 > maxTotal) {
-      console.log('soma total superior a 210');
       this.setState({ isSaveButtonDisabled: true });
     }
     if (attr1 < 0 || attr2 < 0 || attr3 < 0) {
-      console.log('um valor menor que 0');
       this.setState({ isSaveButtonDisabled: true });
     }
     if (attr1 > max || attr2 > max || attr3 > max) {
-      console.log('algum numero maior que 90');
       this.setState({ isSaveButtonDisabled: true });
     }
   }
@@ -170,34 +168,35 @@ class App extends React.Component {
             />
           </div>
         </section>
-        <aside>
-          <h2>Filtros de Busca</h2>
-        </aside>
-        <section className="card-list">
-          {
-            savedCards.map((card, index) => (
-              <div className="card-item" key={ card.cardName }>
-                <Card
-                  cardName={ card.cardName }
-                  cardDescription={ card.cardDescri }
-                  cardAttr1={ card.cardAttr1 }
-                  cardAttr2={ card.cardAttr2 }
-                  cardAttr3={ card.cardAttr3 }
-                  cardImage={ card.cardImage }
-                  cardRare={ card.cardRare }
-                  cardTrunfo={ card.cardTrunfo }
-                />
-                <button
-                  className="delete-button"
-                  type="button"
-                  onClick={ () => this.handleClickDelete(index) }
-                  data-testid="delete-button"
-                >
-                  Exluir
-                </button>
-              </div>))
-          }
-        </section>
+        <h2 className="titulo-allCards">Totas as cartas</h2>
+        <div className="container-allCards">
+          <Filter />
+          <section className="card-list">
+            {
+              savedCards.map((card, index) => (
+                <div className="card-item" key={ card.cardName }>
+                  <Card
+                    cardName={ card.cardName }
+                    cardDescription={ card.cardDescri }
+                    cardAttr1={ card.cardAttr1 }
+                    cardAttr2={ card.cardAttr2 }
+                    cardAttr3={ card.cardAttr3 }
+                    cardImage={ card.cardImage }
+                    cardRare={ card.cardRare }
+                    cardTrunfo={ card.cardTrunfo }
+                  />
+                  <button
+                    className="delete-button"
+                    type="button"
+                    onClick={ () => this.handleClickDelete(index) }
+                    data-testid="delete-button"
+                  >
+                    Exluir
+                  </button>
+                </div>))
+            }
+          </section>
+        </div>
       </div>
     );
   }
