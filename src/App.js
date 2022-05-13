@@ -19,8 +19,8 @@ class App extends React.Component {
   }
 
   setTrunfo = () => {
-    const { cardTrunfo } = this.state;
-    if (cardTrunfo) {
+    const { cardTrunfo, hasTrunfo } = this.state;
+    if (cardTrunfo || hasTrunfo) {
       this.setState({ hasTrunfo: true });
     } else {
       this.setState({ hasTrunfo: false });
@@ -170,10 +170,13 @@ class App extends React.Component {
             />
           </div>
         </section>
-        <section>
+        <aside>
+          <h2>Filtros de Busca</h2>
+        </aside>
+        <section className="card-list">
           {
             savedCards.map((card, index) => (
-              <div key={ card.cardName }>
+              <div className="card-item" key={ card.cardName }>
                 <Card
                   cardName={ card.cardName }
                   cardDescription={ card.cardDescri }
@@ -185,6 +188,7 @@ class App extends React.Component {
                   cardTrunfo={ card.cardTrunfo }
                 />
                 <button
+                  className="delete-button"
                   type="button"
                   onClick={ () => this.handleClickDelete(index) }
                   data-testid="delete-button"

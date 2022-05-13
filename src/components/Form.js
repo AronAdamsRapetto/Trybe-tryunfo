@@ -109,6 +109,7 @@ class Form extends React.Component {
             : <Checkbox cardTrunfo={ cardTrunfo } onInputChange={ onInputChange } />
         }
         <button
+          className="save-button"
           data-testid="save-button"
           type="button"
           disabled={ isSaveButtonDisabled }

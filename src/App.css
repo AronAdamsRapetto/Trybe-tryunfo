@@ -35,3 +35,27 @@ body {
   margin-top: 15px;
   text-align: center;
 }
+
+.card-list, .card-item {
+  display: flex;
+}
+
+.card-list {
+  flex-wrap: wrap;
+}
+
+.card-item {
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 10px;
+}
+
+.delete-button {
+  background-color: #003be5;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  margin: 20px;
+  padding: 8px 32px;
+}
