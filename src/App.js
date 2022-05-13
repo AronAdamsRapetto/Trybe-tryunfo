@@ -11,7 +11,7 @@ class App extends React.Component {
     cardAttr2: '0',
     cardAttr3: '0',
     cardImage: '',
-    cardRare: '',
+    cardRare: 'normal',
     cardTrunfo: false,
     hasTrunfo: false,
     isSaveButtonDisabled: true,
@@ -118,7 +118,7 @@ class App extends React.Component {
     if (deleteCard.cardTrunfo) this.setState({ hasTrunfo: false });
     this.setState((estadoAnterior) => ({
       savedCards: estadoAnterior.savedCards
-        .filter(({ cardDescri }) => cardDescri !== deleteCard.cardDescri),
+        .filter((card, index) => index !== indexClick),
     }));
   }
 
@@ -138,34 +138,37 @@ class App extends React.Component {
     } = this.state;
     return (
       <div>
-        <header>
-          <h1>Tryunfo</h1>
-        </header>
-        <section className="container-formPreview">
-          <Form
-            onInputChange={ this.handleChange }
-            onSaveButtonClick={ this.handleClick }
-            cardName={ cardName }
-            cardDescription={ cardDescri }
-            cardAttr1={ cardAttr1 }
-            cardAttr2={ cardAttr2 }
-            cardAttr3={ cardAttr3 }
-            cardImage={ cardImage }
-            cardRare={ cardRare }
-            cardTrunfo={ cardTrunfo }
-            hasTrunfo={ hasTrunfo }
-            isSaveButtonDisabled={ isSaveButtonDisabled }
-          />
-          <Card
-            cardName={ cardName }
-            cardDescription={ cardDescri }
-            cardAttr1={ cardAttr1 }
-            cardAttr2={ cardAttr2 }
-            cardAttr3={ cardAttr3 }
-            cardImage={ cardImage }
-            cardRare={ cardRare }
-            cardTrunfo={ cardTrunfo }
-          />
+        <section className="container-addCard">
+          <div className="container-form">
+            <h2>Adicionar nova carta</h2>
+            <Form
+              onInputChange={ this.handleChange }
+              onSaveButtonClick={ this.handleClick }
+              cardName={ cardName }
+              cardDescription={ cardDescri }
+              cardAttr1={ cardAttr1 }
+              cardAttr2={ cardAttr2 }
+              cardAttr3={ cardAttr3 }
+              cardImage={ cardImage }
+              cardRare={ cardRare }
+              cardTrunfo={ cardTrunfo }
+              hasTrunfo={ hasTrunfo }
+              isSaveButtonDisabled={ isSaveButtonDisabled }
+            />
+          </div>
+          <div className="container-preview">
+            <h2>Pré-visualização</h2>
+            <Card
+              cardName={ cardName }
+              cardDescription={ cardDescri }
+              cardAttr1={ cardAttr1 }
+              cardAttr2={ cardAttr2 }
+              cardAttr3={ cardAttr3 }
+              cardImage={ cardImage }
+              cardRare={ cardRare }
+              cardTrunfo={ cardTrunfo }
+            />
+          </div>
         </section>
         <section>
           {

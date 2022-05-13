@@ -1,34 +1,57 @@
 .card {
   align-items: center;
   background-color: #036b52;
-  border: 12px solid black;
+  border: 8px solid white;
   border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.25);
   display: flex;
   flex-direction: column;
-  width: 25%;
+  height: 549px;
+  margin: 50px auto;
+  width: 368px;
+}
+
+.container-nameImage {
+  background-color: #023031;
+  border-radius: 10px;
+  color: white;
+  font-style: italic;
+  height: 313px;
+  margin-top: 10px;
+}
+
+.card img {
+  border-radius: 10px 10px 0 0;
+  height: 278px;
+  width: 317px;
+}
+
+.rarity-name {
+  display: flex;
+  justify-content: space-between;
 }
 
 .nomeCard {
-  align-self: flex-end;
   font-size: 20px;
   font-weight: 600;
   margin: 5px 20px;
 }
 
-.card img {
-  border-radius: 10px;
-  height: 250px;
-  width: 300px;
+.raridadeCard {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 10px 0 2px 7px;
 }
 
 .description {
   background: rgba(255, 255, 255, 0.5);
   border-radius: 5px;
   font-size: 13px;
+  height: 147px;
   margin: 5px 0;
-  min-height: 25px;
+  min-height: 50px;
   padding: 5px;
-  width: 295px;
+  width: 317px;
 }
 
 .atributos {
@@ -36,19 +59,12 @@
   border-radius: 8px;
   display: flex;
   flex-direction: column;
+  margin-bottom: 8px;
   padding: 5px;
-}
-
-.raridadeCard {
-  align-self: flex-end;
-  color: white;
-  font-size: 18px;
-  font-style: italic;
-  font-weight: 500;
-  margin: 5px 15px 5px 0;
+  width: 317px;
 }
 
 .tryunfo {
   color: orange;
-  margin: 5px 0 15px;
+  margin: 0 0 10px;
 }

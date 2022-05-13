@@ -1,15 +1,37 @@
 * {
   box-sizing: border-box;
+  font-family: Montserrat , sans-serif;
   margin: 0;
   padding: 0;
 }
 
-.container-formPreview {
+body {
+  color: #3d495c;
+}
+
+.container-addCard {
   display: flex;
+  height: 700px;
   justify-content: space-evenly;
 }
 
-header {
-  margin: 15px 0 40px;
+.container-form {
+  background-color: #fafafa;
+  width: 60%;
+}
+
+.container-form h2 {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.container-preview {
+  background-color: #023031;
+  width: 40%;
+}
+
+.container-preview h2 {
+  color: white;
+  margin-top: 15px;
   text-align: center;
 }
