@@ -17,6 +17,11 @@ class App extends React.Component {
     hasTrunfo: false,
     isSaveButtonDisabled: true,
     savedCards: [],
+    filter: {
+      filterName: '',
+      filterRarity: '',
+      filterSuper: false,
+    },
   }
 
   setTrunfo = () => {
@@ -109,6 +114,12 @@ class App extends React.Component {
     }), this.enableButton);
   }
 
+  handleChangeFilter = ({ target }) => {
+    const { name } = target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    this.setState({ filter: { [name]: value } });
+  }
+
   handleClickDelete = (indexClick) => {
     const { savedCards } = this.state;
     const deleteCard = savedCards
@@ -133,6 +144,7 @@ class App extends React.Component {
       hasTrunfo,
       isSaveButtonDisabled,
       savedCards,
+      filter,
     } = this.state;
     return (
       <div>
@@ -170,30 +182,32 @@ class App extends React.Component {
         </section>
         <h2 className="titulo-allCards">Totas as cartas</h2>
         <div className="container-allCards">
-          <Filter />
+          <Filter filter={ filter } onHandleChange={ this.handleChangeFilter } />
           <section className="card-list">
             {
-              savedCards.map((card, index) => (
-                <div className="card-item" key={ card.cardName }>
-                  <Card
-                    cardName={ card.cardName }
-                    cardDescription={ card.cardDescri }
-                    cardAttr1={ card.cardAttr1 }
-                    cardAttr2={ card.cardAttr2 }
-                    cardAttr3={ card.cardAttr3 }
-                    cardImage={ card.cardImage }
-                    cardRare={ card.cardRare }
-                    cardTrunfo={ card.cardTrunfo }
-                  />
-                  <button
-                    className="delete-button"
-                    type="button"
-                    onClick={ () => this.handleClickDelete(index) }
-                    data-testid="delete-button"
-                  >
-                    Exluir
-                  </button>
-                </div>))
+              savedCards.filter((cardFilter) => cardFilter.cardName
+                .includes(filter.filterName))
+                .map((card, index) => (
+                  <div className="card-item" key={ card.cardName }>
+                    <Card
+                      cardName={ card.cardName }
+                      cardDescription={ card.cardDescri }
+                      cardAttr1={ card.cardAttr1 }
+                      cardAttr2={ card.cardAttr2 }
+                      cardAttr3={ card.cardAttr3 }
+                      cardImage={ card.cardImage }
+                      cardRare={ card.cardRare }
+                      cardTrunfo={ card.cardTrunfo }
+                    />
+                    <button
+                      className="delete-button"
+                      type="button"
+                      onClick={ () => this.handleClickDelete(index) }
+                      data-testid="delete-button"
+                    >
+                      Exluir
+                    </button>
+                  </div>))
             }
           </section>
         </div>

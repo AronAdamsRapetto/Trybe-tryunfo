@@ -1,8 +1,10 @@
 import React from 'react';
 import './Filter.css';
+import PropTypes from 'prop-types';
 
 class Filter extends React.Component {
   render() {
+    const { filter, onHandleChange } = this.props;
     return (
       <aside className="filters-container">
         <h4>Filtros de Busca</h4>
@@ -10,6 +12,9 @@ class Filter extends React.Component {
           type="text"
           data-testid="name-filter"
           placeholder="Nome da carta"
+          name="filterName"
+          value={ filter.filterName }
+          onChange={ onHandleChange }
         />
         <select data-testid="rare-filter">
           <option value="">Raridade</option>
@@ -27,5 +32,25 @@ class Filter extends React.Component {
     );
   }
 }
+
+// filter : {
+//   filterName: '',
+//   filterRarity: '',
+//   filterSuper: false,
+// }
+
+Filter.propTypes = {
+  filter: PropTypes.shape({
+    filterName: PropTypes.string,
+    filterRarity: PropTypes.string,
+    filterSuper: PropTypes.bool,
+  }),
+  onHandleChange: PropTypes.func,
+};
+
+Filter.defaultProps = {
+  filter: PropTypes.object,
+  onHandleChange: PropTypes.func,
+};
 
 export default Filter;
